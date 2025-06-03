@@ -1401,7 +1401,10 @@ const Sidebar = () => {
 
     return (
         <aside className="w-64 bg-white text-black flex flex-col h-screen border-r border-gray-200">
-            <div className="p-4 text-2xl font-bold tracking-wider">Zelestra</div>
+            <div className="p-4 text-2xl font-bold tracking-wider pb-16 pt-8">
+                {/*Zelestra*/}
+                <img src={"Zelestra_Logo.png"} alt={"Zelestra"} height={20} width={200} className="invert"/>
+            </div>
 
             <nav className="flex-1 overflow-y-auto text-sm space-y-4">
                 {['inputs', 'scenario', 'settings'].map((sectionKey) => (
