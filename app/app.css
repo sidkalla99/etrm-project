@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+/*@theme {*/
+/*  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,*/
+/*    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";*/
+/*}*/
+
+html,
+body {
+  @apply bg-white dark:bg-gray-950;
+
+  @media (prefers-color-scheme: dark) {
+    color-scheme: dark;
+  }
+
+  font-family: 'Bahnschrift', "Consolas", sans-serif;
+}
+
+.default-layout {
+  @apply flex flex-col lg:flex-row h-screen w-full;
+  .children {
+    @apply w-full h-full bg-white pt-12 lg:pt-16;
+  }
+}
+
+.auth-layout {
+  @apply flex flex-col lg:flex-row h-screen w-full;
+  .children {
+    @apply w-full h-full bg-white;
+  }
+}
+
+.root {
+  isolation: isolate;
+}
