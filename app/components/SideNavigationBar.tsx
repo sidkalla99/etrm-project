@@ -563,173 +563,964 @@
 //
 // export default Sidebar;
 
+//
+// import React, { useState } from 'react';
+// import {
+//     MdLogout,
+//     MdHome,
+//     MdAdd,
+//     MdVisibility,
+//     MdStorage,
+//     MdFolder,
+//     MdUpload,
+//     MdOutlineInput,
+//     MdManageAccounts,
+//     MdTimeline,
+//     MdBarChart,
+//     MdSettings,
+//     MdBolt,
+//     MdPerson,
+// } from 'react-icons/md';
+// import { Menu } from '@base-ui-components/react/menu';
+//
+// const Sidebar = () => {
+//     const user = {
+//         name: 'Ioritz',
+//         role: 'Super User',
+//         avatar: '/user-avatar.png',
+//     };
+//
+//     const [expandedSections, setExpandedSections] = useState({
+//         inputs: true,
+//     });
+//
+//     const selectedItem = 'Master Data Table'; // simulate selection state
+//     const isInputsActive = selectedItem === 'Master Data Table'; // or use router later
+//
+//     const toggleSection = (section: keyof typeof expandedSections) => {
+//         setExpandedSections((prev) => ({
+//             ...prev,
+//             [section]: !prev[section],
+//         }));
+//     };
+//
+//     return (
+//         <aside className="w-64 bg-white text-black flex flex-col h-screen border-r border-gray-200">
+//             {/* Logo */}
+//             <div className="p-4 text-2xl font-bold tracking-wider">
+//                 Zelestra
+//             </div>
+//
+//             {/* Main Nav */}
+//             <nav className="flex-1 overflow-y-auto px-3 text-sm space-y-4">
+//                 {/* INPUTS SECTION */}
+//                 <div
+//                     className={`rounded-xl p-3 transition ${
+//                         isInputsActive ? 'bg-orange-50' : ''
+//                     }`}
+//                 >
+//                     <button
+//                         className="flex items-center text-sm font-medium text-black mb-2 w-full"
+//                         onClick={() => toggleSection('inputs')}
+//                     >
+//                         <MdOutlineInput className="mr-2 text-lg" />
+//                         Inputs
+//                     </button>
+//
+//                     {expandedSections.inputs && (
+//                         <div className="space-y-2 pl-2">
+//                             {/* Master Data Table with menu */}
+//                             <Menu.Root>
+//                                 <Menu.Trigger className="flex items-center gap-2 py-1.5 px-2 rounded-md hover:bg-orange-100 w-full text-left font-medium text-orange-500 bg-white shadow-sm">
+//                                     <MdHome className="text-lg" />
+//                                     <span>Master Data Table</span>
+//                                 </Menu.Trigger>
+//                                 <Menu.Portal>
+//                                     <Menu.Positioner side="right" align="start">
+//                                         <Menu.Popup className="bg-white text-black rounded-md shadow-lg p-2 w-48 border border-gray-200">
+//                                             <Menu.Item className="flex items-center gap-2 px-2 py-1 hover:bg-orange-100 text-sm rounded-md">
+//                                                 <MdAdd />
+//                                                 Add/Modify
+//                                             </Menu.Item>
+//                                             <Menu.Item className="flex items-center gap-2 px-2 py-1 hover:bg-orange-100 text-sm rounded-md">
+//                                                 <MdVisibility />
+//                                                 View
+//                                             </Menu.Item>
+//                                         </Menu.Popup>
+//                                     </Menu.Positioner>
+//                                 </Menu.Portal>
+//                             </Menu.Root>
+//
+//                             {/* Assets & PPAs */}
+//                             <div className="flex items-center gap-2 text-black pl-1">
+//                                 <MdStorage className="text-base" />
+//                                 Assets & PPAs
+//                             </div>
+//                             <div className="ml-6 space-y-1 text-black text-sm">
+//                                 <div className="flex items-center gap-2">
+//                                     <MdFolder className="text-xs" />
+//                                     Assets
+//                                 </div>
+//                                 <div className="flex items-center gap-2">
+//                                     <MdFolder className="text-xs" />
+//                                     Contracts
+//                                 </div>
+//                             </div>
+//
+//                             {/* Market Data */}
+//                             <div className="flex items-center gap-2 text-black pl-1">
+//                                 <MdUpload />
+//                                 Market Data
+//                             </div>
+//
+//                             {/* Generation Data */}
+//                             <div className="flex items-center gap-2 text-black pl-1">
+//                                 <MdBolt />
+//                                 Generation Data
+//                             </div>
+//                         </div>
+//                     )}
+//                 </div>
+//
+//                 {/* SCENARIO MANAGEMENT */}
+//                 <div>
+//                     <div className="flex items-center text-sm font-medium text-orange-500 mb-1">
+//                         <MdManageAccounts className="mr-2 text-lg" />
+//                         Scenario Management
+//                     </div>
+//                     <div className="ml-6 text-black space-y-1">
+//                         <div className="flex items-center gap-2">
+//                             <MdTimeline />
+//                             Portfolio
+//                         </div>
+//                         <div className="flex items-center gap-2">
+//                             <MdTimeline />
+//                             Runs
+//                         </div>
+//                         <div className="flex items-center gap-2">
+//                             <MdTimeline />
+//                             Logs
+//                         </div>
+//                     </div>
+//                 </div>
+//
+//                 {/* OUTPUTS */}
+//                 <div className="flex items-center gap-2 mt-4 text-orange-500">
+//                     <MdBarChart />
+//                     Outputs
+//                 </div>
+//
+//                 {/* SETTINGS */}
+//                 <div className="flex items-center gap-2 text-orange-500">
+//                     <MdSettings />
+//                     Settings
+//                 </div>
+//             </nav>
+//
+//             {/* PROFILE SECTION */}
+//             <div className="p-4 border-t border-gray-200 text-sm flex items-center gap-4">
+//                 <img
+//                     src={user.avatar}
+//                     alt="Avatar"
+//                     className="h-10 w-10 rounded-full object-cover"
+//                 />
+//                 <div>
+//                     <div className="font-semibold">{user.name}</div>
+//                     <div className="text-orange-500">{user.role}</div>
+//                     <div className="mt-1 flex items-center gap-1 text-black hover:text-red-500 cursor-pointer">
+//                         <MdLogout size={16} />
+//                         Logout
+//                     </div>
+//                 </div>
+//             </div>
+//         </aside>
+//     );
+// };
+//
+// export default Sidebar;
+
+
+// import React, { useState } from 'react';
+// import {
+//     MdLogout,
+//     MdHome,
+//     MdAdd,
+//     MdVisibility,
+//     MdStorage,
+//     MdFolder,
+//     MdUpload,
+//     MdOutlineInput,
+//     MdManageAccounts,
+//     MdTimeline,
+//     MdBarChart,
+//     MdSettings,
+//     MdBolt,
+//     MdPerson,
+// } from 'react-icons/md';
+// import { Menu } from '@base-ui-components/react/menu';
+//
+// const Sidebar = () => {
+//     const user = {
+//         name: 'Ioritz',
+//         role: 'Super User',
+//         avatar: '/user-avatar.png',
+//     };
+//
+//     const [expandedSections, setExpandedSections] = useState({
+//         inputs: true,
+//     });
+//
+//     const selectedItem = 'Master Data Table'; // simulate selection state
+//     const isInputsActive = selectedItem === 'Master Data Table'; // or use router later
+//
+//     const toggleSection = (section: keyof typeof expandedSections) => {
+//         setExpandedSections((prev) => ({
+//             ...prev,
+//             [section]: !prev[section],
+//         }));
+//     };
+//
+//     return (
+//         <aside className="w-64 bg-white text-black flex flex-col h-screen border-r border-gray-200">
+//             {/* Logo */}
+//             <div className="p-4 text-2xl font-bold tracking-wider">
+//                 Zelestra
+//             </div>
+//
+//             {/* Main Nav */}
+//             <nav className="flex-1 overflow-y-auto px-3 text-sm space-y-4">
+//                 {/* INPUTS SECTION */}
+//                 <div
+//                     className={`rounded-xl p-3 transition ${
+//                         isInputsActive ? 'bg-orange-50' : ''
+//                     }`}
+//                 >
+//                     <button
+//                         className="flex items-center text-sm font-medium text-black mb-2 w-full"
+//                         onClick={() => toggleSection('inputs')}
+//                     >
+//                         <MdOutlineInput className="mr-2 text-lg" />
+//                         Inputs
+//                     </button>
+//
+//                     {expandedSections.inputs && (
+//                         <div className="space-y-2 pl-2">
+//                             {/* Master Data Table with menu */}
+//                             <Menu.Root>
+//                                 <Menu.Trigger className="flex items-center gap-2 py-1.5 px-2 rounded-md hover:bg-orange-100 w-full text-left font-medium text-orange-500 bg-white shadow-sm">
+//                                     <MdHome className="text-lg" />
+//                                     <span>Master Data Table</span>
+//                                 </Menu.Trigger>
+//                                 <Menu.Portal>
+//                                     <Menu.Positioner side="right" align="start">
+//                                         <Menu.Popup className="bg-white text-black rounded-md shadow-lg p-2 w-48 border border-gray-200">
+//                                             <Menu.Item className="flex items-center gap-2 px-2 py-1 hover:bg-orange-100 text-sm rounded-md">
+//                                                 <MdAdd />
+//                                                 Add/Modify
+//                                             </Menu.Item>
+//                                             <Menu.Item className="flex items-center gap-2 px-2 py-1 hover:bg-orange-100 text-sm rounded-md">
+//                                                 <MdVisibility />
+//                                                 View
+//                                             </Menu.Item>
+//                                         </Menu.Popup>
+//                                     </Menu.Positioner>
+//                                 </Menu.Portal>
+//                             </Menu.Root>
+//
+//                             {/* Assets & PPAs */}
+//                             <div className="flex items-center gap-2 text-black pl-1">
+//                                 <MdStorage className="text-base" />
+//                                 Assets & PPAs
+//                             </div>
+//                             <div className="ml-6 space-y-1 text-black text-sm">
+//                                 <div className="flex items-center gap-2">
+//                                     <MdFolder className="text-xs" />
+//                                     Assets
+//                                 </div>
+//                                 <div className="flex items-center gap-2">
+//                                     <MdFolder className="text-xs" />
+//                                     Contracts
+//                                 </div>
+//                             </div>
+//
+//                             {/* Market Data */}
+//                             <div className="flex items-center gap-2 text-black pl-1">
+//                                 <MdUpload />
+//                                 Market Data
+//                             </div>
+//
+//                             {/* Generation Data */}
+//                             <div className="flex items-center gap-2 text-black pl-1">
+//                                 <MdBolt />
+//                                 Generation Data
+//                             </div>
+//                         </div>
+//                     )}
+//                 </div>
+//
+//                 {/* SCENARIO MANAGEMENT */}
+//                 <div>
+//                     <div className="flex items-center text-sm font-medium text-orange-500 mb-1">
+//                         <MdManageAccounts className="mr-2 text-lg" />
+//                         Scenario Management
+//                     </div>
+//                     <div className="ml-6 text-black space-y-1">
+//                         <div className="flex items-center gap-2">
+//                             <MdTimeline />
+//                             Portfolio
+//                         </div>
+//                         <div className="flex items-center gap-2">
+//                             <MdTimeline />
+//                             Runs
+//                         </div>
+//                         <div className="flex items-center gap-2">
+//                             <MdTimeline />
+//                             Logs
+//                         </div>
+//                     </div>
+//                 </div>
+//
+//                 {/* OUTPUTS */}
+//                 <div className="flex items-center gap-2 mt-4 text-orange-500">
+//                     <MdBarChart />
+//                     Outputs
+//                 </div>
+//
+//                 {/* SETTINGS */}
+//                 <div className="flex items-center gap-2 text-orange-500">
+//                     <MdSettings />
+//                     Settings
+//                 </div>
+//             </nav>
+//
+//             {/* PROFILE SECTION */}
+//             <div className="p-4 border-t border-gray-200 text-sm flex items-center gap-4">
+//                 <img
+//                     src={user.avatar}
+//                     alt="Avatar"
+//                     className="h-10 w-10 rounded-full object-cover"
+//                 />
+//                 <div>
+//                     <div className="font-semibold">{user.name}</div>
+//                     <div className="text-orange-500">{user.role}</div>
+//                     <div className="mt-1 flex items-center gap-1 text-black hover:text-red-500 cursor-pointer">
+//                         <MdLogout size={16} />
+//                         Logout
+//                     </div>
+//                 </div>
+//             </div>
+//         </aside>
+//     );
+// };
+//
+// export default Sidebar;
+
+
+// import React, { useState } from 'react';
+// import {
+//     MdLogout, MdHome, MdAdd, MdVisibility, MdUpload, MdOutlineInput,
+//     MdManageAccounts, MdTimeline, MdBarChart, MdSettings, MdPerson,
+//     MdStorage, MdFolder, MdBolt, MdPeopleAlt, MdConfirmationNumber,
+//     MdOutlineSupportAgent
+// } from 'react-icons/md';
+// import { Menu } from '@base-ui-components/react/menu';
+// import { Avatar } from '@base-ui-components/react';
+//
+// const user = {
+//     name: 'Ioritz',
+//     role: 'Super User',
+//     avatar: '/user-avatar.png',
+// };
+//
+// const sectionStyle = (active: boolean) =>
+//     `rounded-xl p-3 transition group ${active ? 'bg-orange-50' : 'hover:bg-orange-100'}`;
+//
+// const itemHoverStyle =
+//     'flex items-center gap-2 py-1.5 px-2 rounded-md group-hover:text-white hover:text-white';
+//
+// const Sidebar = () => {
+//     const [expanded, setExpanded] = useState({
+//         inputs: true,
+//         scenario: true,
+//         settings: true,
+//     });
+//
+//     const toggle = (key: keyof typeof expanded) =>
+//         setExpanded((prev) => ({ ...prev, [key]: !prev[key] }));
+//
+//     return (
+//         <aside className="w-64 bg-white text-black flex flex-col h-screen border-r border-gray-200">
+//             {/* Logo */}
+//             <div className="p-4 text-2xl font-bold tracking-wider">Zelestra</div>
+//
+//             {/* Nav */}
+//             <nav className="flex-1 overflow-y-auto px-3 text-sm space-y-4">
+//                 {/* Inputs Section */}
+//                 <div className={sectionStyle(expanded.inputs)}>
+//                     <button
+//                         className="flex items-center text-sm font-semibold mb-2 group w-full"
+//                         onClick={() => toggle('inputs')}
+//                     >
+//                         <MdOutlineInput className="mr-2 text-lg" /> Inputs
+//                     </button>
+//
+//                     {expanded.inputs && (
+//                         <div className="space-y-2 pl-2">
+//                             {/* Master Data Table */}
+//                             <Menu.Root>
+//                                 <Menu.Trigger className={`${itemHoverStyle} text-orange-500`}>
+//                                     <MdHome className="text-lg" /> Master Data Table
+//                                 </Menu.Trigger>
+//                                 <Menu.Portal>
+//                                     <Menu.Positioner side="right" align="start">
+//                                         <Menu.Popup className="bg-white text-black rounded-md shadow-lg p-2 w-48 border border-gray-200">
+//                                             <Menu.Item className="flex items-center gap-2 px-2 py-1 hover:bg-orange-500 hover:text-white text-sm rounded-md">
+//                                                 <MdAdd /> Add/Edit
+//                                             </Menu.Item>
+//                                             <Menu.Item className="flex items-center gap-2 px-2 py-1 hover:bg-orange-500 hover:text-white text-sm rounded-md">
+//                                                 <MdVisibility /> View
+//                                             </Menu.Item>
+//                                         </Menu.Popup>
+//                                     </Menu.Positioner>
+//                                 </Menu.Portal>
+//                             </Menu.Root>
+//
+//                             {/* Assets & PPA */}
+//                             <Menu.Root>
+//                                 <Menu.Trigger className={itemHoverStyle}>
+//                                     <MdStorage /> Assets & PPA
+//                                 </Menu.Trigger>
+//                                 <Menu.Portal>
+//                                     <Menu.Positioner side="right" align="start">
+//                                         <Menu.Popup className="bg-white text-black rounded-md shadow-lg p-2 w-52 border border-gray-200">
+//                                             <div className="font-medium px-2 pt-1 pb-1 text-gray-700">Assets</div>
+//                                             <Menu.Item className="px-2 py-1 hover:bg-orange-500 hover:text-white rounded-md text-sm">
+//                                                 Add/Edit
+//                                             </Menu.Item>
+//                                             <Menu.Item className="px-2 py-1 hover:bg-orange-500 hover:text-white rounded-md text-sm">
+//                                                 View
+//                                             </Menu.Item>
+//                                             <div className="font-medium px-2 pt-2 pb-1 text-gray-700">Contracts</div>
+//                                             <Menu.Item className="px-2 py-1 hover:bg-orange-500 hover:text-white rounded-md text-sm">
+//                                                 Add/Edit
+//                                             </Menu.Item>
+//                                             <Menu.Item className="px-2 py-1 hover:bg-orange-500 hover:text-white rounded-md text-sm">
+//                                                 View
+//                                             </Menu.Item>
+//                                         </Menu.Popup>
+//                                     </Menu.Positioner>
+//                                 </Menu.Portal>
+//                             </Menu.Root>
+//
+//                             {/* Market Data */}
+//                             <Menu.Root>
+//                                 <Menu.Trigger className={itemHoverStyle}>
+//                                     <MdUpload /> Market Data
+//                                 </Menu.Trigger>
+//                                 <Menu.Portal>
+//                                     <Menu.Positioner side="right" align="start">
+//                                         <Menu.Popup className="bg-white text-black rounded-md shadow-lg p-2 w-48 border border-gray-200">
+//                                             {['Add/Edit', 'View', 'Upload'].map((item) => (
+//                                                 <Menu.Item
+//                                                     key={item}
+//                                                     className="px-2 py-1 hover:bg-orange-500 hover:text-white rounded-md text-sm"
+//                                                 >
+//                                                     {item}
+//                                                 </Menu.Item>
+//                                             ))}
+//                                         </Menu.Popup>
+//                                     </Menu.Positioner>
+//                                 </Menu.Portal>
+//                             </Menu.Root>
+//
+//                             {/* Generational Data */}
+//                             <Menu.Root>
+//                                 <Menu.Trigger className={itemHoverStyle}>
+//                                     <MdBolt /> Generation Data
+//                                 </Menu.Trigger>
+//                                 <Menu.Portal>
+//                                     <Menu.Positioner side="right" align="start">
+//                                         <Menu.Popup className="bg-white text-black rounded-md shadow-lg p-2 w-48 border border-gray-200">
+//                                             {['Add/Edit', 'View', 'Upload'].map((item) => (
+//                                                 <Menu.Item
+//                                                     key={item}
+//                                                     className="px-2 py-1 hover:bg-orange-500 hover:text-white rounded-md text-sm"
+//                                                 >
+//                                                     {item}
+//                                                 </Menu.Item>
+//                                             ))}
+//                                         </Menu.Popup>
+//                                     </Menu.Positioner>
+//                                 </Menu.Portal>
+//                             </Menu.Root>
+//                         </div>
+//                     )}
+//                 </div>
+//
+//                 {/* Scenario Management */}
+//                 <div className={sectionStyle(expanded.scenario)}>
+//                     <button
+//                         className="flex items-center text-sm font-semibold mb-2 text-orange-500 group w-full"
+//                         onClick={() => toggle('scenario')}
+//                     >
+//                         <MdManageAccounts className="mr-2 text-lg" /> Scenario Management
+//                     </button>
+//                     {expanded.scenario && (
+//                         <div className="ml-6 text-sm text-black space-y-1">
+//                             {['Portfolio', 'Runs', 'Logs'].map((label) => (
+//                                 <div key={label} className="hover:text-white">{label}</div>
+//                             ))}
+//                         </div>
+//                     )}
+//                 </div>
+//
+//                 {/* Outputs */}
+//                 <div className="hover:bg-orange-100 rounded-xl p-3">
+//                     <div className="flex items-center text-sm font-medium text-orange-500">
+//                         <MdBarChart className="mr-2 text-lg" /> Outputs
+//                     </div>
+//                 </div>
+//
+//                 {/* Settings */}
+//                 <div className={sectionStyle(expanded.settings)}>
+//                     <button
+//                         className="flex items-center text-sm font-semibold mb-2 text-orange-500 group w-full"
+//                         onClick={() => toggle('settings')}
+//                     >
+//                         <MdSettings className="mr-2 text-lg" /> Settings
+//                     </button>
+//                     {expanded.settings && (
+//                         <div className="ml-6 text-sm text-black space-y-1">
+//                             <div className="hover:text-white">User Management</div>
+//                             <Menu.Root>
+//                                 <Menu.Trigger className="hover:text-white flex items-center gap-2">
+//                                     <MdConfirmationNumber /> Tickets
+//                                 </Menu.Trigger>
+//                                 <Menu.Portal>
+//                                     <Menu.Positioner side="right" align="start">
+//                                         <Menu.Popup className="bg-white text-black rounded-md shadow-lg p-2 w-48 border border-gray-200">
+//                                             <Menu.Item className="px-2 py-1 hover:bg-orange-500 hover:text-white rounded-md text-sm">
+//                                                 Raise a Ticket
+//                                             </Menu.Item>
+//                                             <Menu.Item className="px-2 py-1 hover:bg-orange-500 hover:text-white rounded-md text-sm">
+//                                                 Manage Tickets
+//                                             </Menu.Item>
+//                                         </Menu.Popup>
+//                                     </Menu.Positioner>
+//                                 </Menu.Portal>
+//                             </Menu.Root>
+//                             <div className="hover:text-white">Profile Settings</div>
+//                         </div>
+//                     )}
+//                 </div>
+//             </nav>
+//
+//             {/*/!* Profile *!/*/}
+//             {/*<div className="p-4 border-t border-gray-200 text-sm flex items-center gap-4">*/}
+//             {/*    <Avatar src={user.avatar} fallback="A" size="md" radius="full" />*/}
+//             {/*    <div>*/}
+//             {/*        <div className="font-semibold">{user.name}</div>*/}
+//             {/*        <div className="text-orange-500">{user.role}</div>*/}
+//             {/*        <div className="mt-1 flex items-center gap-1 text-black hover:text-red-500 cursor-pointer">*/}
+//             {/*            <MdLogout size={16} /> Logout*/}
+//             {/*        </div>*/}
+//             {/*    </div>*/}
+//             {/*</div>*/}
+//             {/* Profile Section */}
+//             <div className="p-4 border-t border-gray-200 text-sm flex items-center gap-4">
+//                 <Avatar.Root className="h-10 w-10 rounded-full overflow-hidden">
+//                     <Avatar.Image
+//                         src={user.avatar}
+//                         alt={user.name}
+//                         className="h-full w-full object-cover"
+//                     />
+//                     <Avatar.Fallback className="flex items-center justify-center h-full w-full bg-gray-200 text-gray-600">
+//                         {user.name.charAt(0)}
+//                     </Avatar.Fallback>
+//                 </Avatar.Root>
+//                 <div>
+//                     <div className="font-semibold">{user.name}</div>
+//                     <div className="text-orange-500">{user.role}</div>
+//                     <div className="mt-1 flex items-center gap-1 text-black hover:text-red-500 cursor-pointer">
+//                         <MdLogout size={16} />
+//                         Logout
+//                     </div>
+//                 </div>
+//             </div>
+//         </aside>
+//     );
+// };
+//
+// export default Sidebar;
+
+// # Great V1
+// import React, { useState } from 'react';
+// import {
+//     MdLogout, MdHome, MdAdd, MdVisibility, MdUpload, MdOutlineInput,
+//     MdManageAccounts, MdTimeline, MdBarChart, MdSettings, MdPerson,
+//     MdStorage, MdFolder, MdBolt, MdPeopleAlt, MdConfirmationNumber,
+//     MdOutlineSupportAgent
+// } from 'react-icons/md';
+// import { Menu } from '@base-ui-components/react/menu';
+// import { Avatar } from '@base-ui-components/react/avatar';
+//
+// const user = {
+//     name: 'Ioritz',
+//     role: 'Super User',
+//     avatar: '/user-avatar.png',
+// };
+//
+// const Sidebar = () => {
+//     const [expanded, setExpanded] = useState({
+//         inputs: true,
+//         scenario: true,
+//         settings: true,
+//     });
+//
+//     const toggle = (key: keyof typeof expanded) =>
+//         setExpanded((prev) => ({ ...prev, [key]: !prev[key] }));
+//
+//     const sectionContainer = (children: React.ReactNode, hoverKey: string) => (
+//         <div className="rounded-xl group">
+//             <div className="group-hover:bg-orange-50 transition px-3 py-2 rounded-xl">
+//                 {children}
+//             </div>
+//         </div>
+//     );
+//
+//     const menuItem = (label: string) => (
+//         <div className="px-2 py-1 rounded-md hover:bg-white hover:text-orange-500 text-orange-500 text-sm cursor-pointer">
+//             {label}
+//         </div>
+//     );
+//
+//     return (
+//         <aside className="w-64 bg-white text-black flex flex-col h-screen border-r border-gray-200">
+//             <div className="p-4 text-2xl font-bold tracking-wider">Zelestra</div>
+//
+//             <nav className="flex-1 overflow-y-auto px-3 text-sm space-y-4">
+//                 {sectionContainer(
+//                     <div>
+//                         <button
+//                             className="flex items-center text-sm font-semibold mb-2 text-orange-500 w-full"
+//                             onClick={() => toggle('inputs')}
+//                         >
+//                             <MdOutlineInput className="mr-2 text-lg" /> Inputs
+//                         </button>
+//
+//                         {expanded.inputs && (
+//                             <div className="space-y-2 pl-2">
+//                                 <Menu.Root>
+//                                     <Menu.Trigger className="text-orange-500 px-2 py-1.5 rounded-md hover:bg-white hover:text-orange-500 flex items-center gap-2">
+//                                         <MdHome className="text-lg" /> Master Data Table
+//                                     </Menu.Trigger>
+//                                     <Menu.Portal>
+//                                         <Menu.Positioner side="right" align="start">
+//                                             <Menu.Popup className="bg-white text-black rounded-md shadow-lg p-2 w-48 border border-gray-200">
+//                                                 {menuItem('Add/Edit')}
+//                                                 {menuItem('View')}
+//                                             </Menu.Popup>
+//                                         </Menu.Positioner>
+//                                     </Menu.Portal>
+//                                 </Menu.Root>
+//
+//                                 <Menu.Root>
+//                                     <Menu.Trigger className="text-orange-500 px-2 py-1.5 rounded-md hover:bg-white hover:text-orange-500 flex items-center gap-2">
+//                                         <MdStorage /> Assets & PPA
+//                                     </Menu.Trigger>
+//                                     <Menu.Portal>
+//                                         <Menu.Positioner side="right" align="start">
+//                                             <Menu.Popup className="bg-white text-black rounded-md shadow-lg p-2 w-52 border border-gray-200">
+//                                                 <div className="font-medium px-2 pt-1 pb-1 text-gray-700">Assets</div>
+//                                                 {menuItem('Add/Edit')}
+//                                                 {menuItem('View')}
+//                                                 <div className="font-medium px-2 pt-2 pb-1 text-gray-700">Contracts</div>
+//                                                 {menuItem('Add/Edit')}
+//                                                 {menuItem('View')}
+//                                             </Menu.Popup>
+//                                         </Menu.Positioner>
+//                                     </Menu.Portal>
+//                                 </Menu.Root>
+//
+//                                 <Menu.Root>
+//                                     <Menu.Trigger className="text-orange-500 px-2 py-1.5 rounded-md hover:bg-white hover:text-orange-500 flex items-center gap-2">
+//                                         <MdUpload /> Market Data
+//                                     </Menu.Trigger>
+//                                     <Menu.Portal>
+//                                         <Menu.Positioner side="right" align="start">
+//                                             <Menu.Popup className="bg-white text-black rounded-md shadow-lg p-2 w-48 border border-gray-200">
+//                                                 {['Add/Edit', 'View', 'Upload'].map(menuItem)}
+//                                             </Menu.Popup>
+//                                         </Menu.Positioner>
+//                                     </Menu.Portal>
+//                                 </Menu.Root>
+//
+//                                 <Menu.Root>
+//                                     <Menu.Trigger className="text-orange-500 px-2 py-1.5 rounded-md hover:bg-white hover:text-orange-500 flex items-center gap-2">
+//                                         <MdBolt /> Generation Data
+//                                     </Menu.Trigger>
+//                                     <Menu.Portal>
+//                                         <Menu.Positioner side="right" align="start">
+//                                             <Menu.Popup className="bg-white text-black rounded-md shadow-lg p-2 w-48 border border-gray-200">
+//                                                 {['Add/Edit', 'View', 'Upload'].map(menuItem)}
+//                                             </Menu.Popup>
+//                                         </Menu.Positioner>
+//                                     </Menu.Portal>
+//                                 </Menu.Root>
+//                             </div>
+//                         )}
+//                     </div>,
+//                     'inputs'
+//                 )}
+//
+//                 {sectionContainer(
+//                     <div>
+//                         <button
+//                             className="flex items-center text-sm font-semibold mb-2 text-orange-500 w-full"
+//                             onClick={() => toggle('scenario')}
+//                         >
+//                             <MdManageAccounts className="mr-2 text-lg" /> Scenario Management
+//                         </button>
+//                         {expanded.scenario && (
+//                             <div className="ml-6 space-y-1">
+//                                 {['Portfolio', 'Runs', 'Logs'].map((item) => (
+//                                     <div
+//                                         key={item}
+//                                         className="text-orange-500 hover:bg-white hover:text-orange-500 px-2 py-1.5 rounded-md"
+//                                     >
+//                                         {item}
+//                                     </div>
+//                                 ))}
+//                             </div>
+//                         )}
+//                     </div>,
+//                     'scenario'
+//                 )}
+//
+//                 {sectionContainer(
+//                     <div className="text-orange-500 px-2 py-1.5 font-semibold flex items-center gap-2">
+//                         <MdBarChart /> Outputs
+//                     </div>,
+//                     'outputs'
+//                 )}
+//
+//                 {sectionContainer(
+//                     <div>
+//                         <button
+//                             className="flex items-center text-sm font-semibold mb-2 text-orange-500 w-full"
+//                             onClick={() => toggle('settings')}
+//                         >
+//                             <MdSettings className="mr-2 text-lg" /> Settings
+//                         </button>
+//                         {expanded.settings && (
+//                             <div className="ml-6 space-y-1">
+//                                 <div className="text-orange-500 hover:bg-white hover:text-orange-500 px-2 py-1.5 rounded-md">
+//                                     User Management
+//                                 </div>
+//                                 <Menu.Root>
+//                                     <Menu.Trigger className="text-orange-500 hover:bg-white hover:text-orange-500 px-2 py-1.5 rounded-md flex items-center gap-2">
+//                                         <MdConfirmationNumber /> Tickets
+//                                     </Menu.Trigger>
+//                                     <Menu.Portal>
+//                                         <Menu.Positioner side="right" align="start">
+//                                             <Menu.Popup className="bg-white text-black rounded-md shadow-lg p-2 w-48 border border-gray-200">
+//                                                 {menuItem('Raise a Ticket')}
+//                                                 {menuItem('Manage Tickets')}
+//                                             </Menu.Popup>
+//                                         </Menu.Positioner>
+//                                     </Menu.Portal>
+//                                 </Menu.Root>
+//                                 <div className="text-orange-500 hover:bg-white hover:text-orange-500 px-2 py-1.5 rounded-md">
+//                                     Profile Settings
+//                                 </div>
+//                             </div>
+//                         )}
+//                     </div>,
+//                     'settings'
+//                 )}
+//             </nav>
+//
+//             {/* Profile */}
+//             <div className="p-4 border-t border-gray-200 text-sm flex items-center gap-4">
+//                 <Avatar.Root className="h-10 w-10 rounded-full overflow-hidden">
+//                     <Avatar.Image
+//                         src={user.avatar}
+//                         alt={user.name}
+//                         className="h-full w-full object-cover"
+//                     />
+//                     <Avatar.Fallback className="flex items-center justify-center h-full w-full bg-gray-200 text-gray-600">
+//                         {user.name.charAt(0)}
+//                     </Avatar.Fallback>
+//                 </Avatar.Root>
+//                 <div>
+//                     <div className="font-semibold">{user.name}</div>
+//                     <div className="text-orange-500">{user.role}</div>
+//                     <div className="mt-1 flex items-center gap-1 text-black hover:text-red-500 cursor-pointer">
+//                         <MdLogout size={16} /> Logout
+//                     </div>
+//                 </div>
+//             </div>
+//         </aside>
+//     );
+// };
+//
+// export default Sidebar;
+
 
 import React, { useState } from 'react';
 import {
-    MdLogout,
-    MdHome,
-    MdAdd,
-    MdVisibility,
-    MdStorage,
-    MdFolder,
-    MdUpload,
-    MdOutlineInput,
-    MdManageAccounts,
-    MdTimeline,
-    MdBarChart,
-    MdSettings,
-    MdBolt,
-    MdPerson,
+    MdLogout, MdHome, MdAdd, MdVisibility, MdUpload, MdOutlineInput,
+    MdManageAccounts, MdTimeline, MdBarChart, MdSettings, MdPerson,
+    MdStorage, MdFolder, MdBolt, MdPeopleAlt, MdConfirmationNumber,
+    MdOutlineSupportAgent
 } from 'react-icons/md';
 import { Menu } from '@base-ui-components/react/menu';
+import { Avatar } from '@base-ui-components/react/avatar';
+
+const user = {
+    name: 'Ioritz',
+    role: 'Super User',
+    avatar: '/user-avatar.png',
+};
 
 const Sidebar = () => {
-    const user = {
-        name: 'Ioritz',
-        role: 'Super User',
-        avatar: '/user-avatar.png',
-    };
-
-    const [expandedSections, setExpandedSections] = useState({
+    const [expanded, setExpanded] = useState({
         inputs: true,
+        scenario: true,
+        settings: true,
     });
 
-    const selectedItem = 'Master Data Table'; // simulate selection state
-    const isInputsActive = selectedItem === 'Master Data Table'; // or use router later
+    const toggle = (key: keyof typeof expanded) =>
+        setExpanded((prev) => ({ ...prev, [key]: !prev[key] }));
 
-    const toggleSection = (section: keyof typeof expandedSections) => {
-        setExpandedSections((prev) => ({
-            ...prev,
-            [section]: !prev[section],
-        }));
-    };
+    const menuItem = (label: string) => (
+        <div className="px-2 py-1 rounded-md hover:bg-white hover:text-orange-500 text-orange-500 text-sm cursor-pointer">
+            {label}
+        </div>
+    );
 
     return (
         <aside className="w-64 bg-white text-black flex flex-col h-screen border-r border-gray-200">
-            {/* Logo */}
-            <div className="p-4 text-2xl font-bold tracking-wider">
-                Zelestra
-            </div>
+            <div className="p-4 text-2xl font-bold tracking-wider">Zelestra</div>
 
-            {/* Main Nav */}
-            <nav className="flex-1 overflow-y-auto px-3 text-sm space-y-4">
-                {/* INPUTS SECTION */}
-                <div
-                    className={`rounded-xl p-3 transition ${
-                        isInputsActive ? 'bg-orange-50' : ''
-                    }`}
-                >
-                    <button
-                        className="flex items-center text-sm font-medium text-black mb-2 w-full"
-                        onClick={() => toggleSection('inputs')}
+            <nav className="flex-1 overflow-y-auto text-sm space-y-4">
+                {['inputs', 'scenario', 'settings'].map((sectionKey) => (
+                    <div
+                        key={sectionKey}
+                        className="group px-3 py-2 rounded-xl hover:bg-orange-50 transition"
                     >
-                        <MdOutlineInput className="mr-2 text-lg" />
-                        Inputs
-                    </button>
+                        <button
+                            className="flex items-center text-sm font-semibold mb-2 text-orange-500 w-full"
+                            onClick={() => toggle(sectionKey as keyof typeof expanded)}
+                        >
+                            {sectionKey === 'inputs' && <MdOutlineInput className="mr-2 text-lg" />}
+                            {sectionKey === 'scenario' && <MdManageAccounts className="mr-2 text-lg" />}
+                            {sectionKey === 'settings' && <MdSettings className="mr-2 text-lg" />}
+                            {sectionKey.charAt(0).toUpperCase() + sectionKey.slice(1).replace(/([A-Z])/g, ' $1')}
+                        </button>
 
-                    {expandedSections.inputs && (
-                        <div className="space-y-2 pl-2">
-                            {/* Master Data Table with menu */}
-                            <Menu.Root>
-                                <Menu.Trigger className="flex items-center gap-2 py-1.5 px-2 rounded-md hover:bg-orange-100 w-full text-left font-medium text-orange-500 bg-white shadow-sm">
-                                    <MdHome className="text-lg" />
-                                    <span>Master Data Table</span>
-                                </Menu.Trigger>
-                                <Menu.Portal>
-                                    <Menu.Positioner side="right" align="start">
-                                        <Menu.Popup className="bg-white text-black rounded-md shadow-lg p-2 w-48 border border-gray-200">
-                                            <Menu.Item className="flex items-center gap-2 px-2 py-1 hover:bg-orange-100 text-sm rounded-md">
-                                                <MdAdd />
-                                                Add/Modify
-                                            </Menu.Item>
-                                            <Menu.Item className="flex items-center gap-2 px-2 py-1 hover:bg-orange-100 text-sm rounded-md">
-                                                <MdVisibility />
-                                                View
-                                            </Menu.Item>
-                                        </Menu.Popup>
-                                    </Menu.Positioner>
-                                </Menu.Portal>
-                            </Menu.Root>
+                        {expanded[sectionKey as keyof typeof expanded] && (
+                            <div className="space-y-2">
+                                {sectionKey === 'inputs' && (
+                                    <div className="space-y-2">
+                                        {[
+                                            { icon: <MdHome />, label: 'Master Data Table', menu: ['Add/Edit', 'View'] },
+                                            {
+                                                icon: <MdStorage />,
+                                                label: 'Assets & PPA',
+                                                menu: ['Assets: Add/Edit', 'Assets: View', 'Contracts: Add/Edit', 'Contracts: View'],
+                                            },
+                                            { icon: <MdUpload />, label: 'Market Data', menu: ['Add/Edit', 'View', 'Upload'] },
+                                            { icon: <MdBolt />, label: 'Generation Data', menu: ['Add/Edit', 'View', 'Upload'] },
+                                        ].map(({ icon, label, menu }) => (
+                                            <Menu.Root key={label}>
+                                                <Menu.Trigger className="flex items-center gap-2 w-full px-4 py-1.5 rounded-md text-orange-500 hover:bg-white hover:text-black">
+                                                    {icon} {label}
+                                                </Menu.Trigger>
+                                                <Menu.Portal>
+                                                    <Menu.Positioner side="right" align="start">
+                                                        <Menu.Popup className="bg-white text-black rounded-md shadow-lg p-2 w-56 border border-gray-200">
+                                                            {menu.map((item) => (
+                                                                <Menu.Item
+                                                                    key={item}
+                                                                    className="px-2 py-1 hover:bg-orange-500 hover:text-white text-sm rounded-md"
+                                                                >
+                                                                    {item}
+                                                                </Menu.Item>
+                                                            ))}
+                                                        </Menu.Popup>
+                                                    </Menu.Positioner>
+                                                </Menu.Portal>
+                                            </Menu.Root>
+                                        ))}
+                                    </div>
+                                )}
 
-                            {/* Assets & PPAs */}
-                            <div className="flex items-center gap-2 text-black pl-1">
-                                <MdStorage className="text-base" />
-                                Assets & PPAs
+                                {sectionKey === 'scenario' && (
+                                    <div className="ml-6 space-y-1">
+                                        {['Portfolio', 'Runs', 'Logs'].map((item) => (
+                                            <div
+                                                key={item}
+                                                className="text-orange-500 hover:bg-white hover:text-black px-2 py-1.5 rounded-md"
+                                            >
+                                                {item}
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+
+                                {sectionKey === 'settings' && (
+                                    <div className="ml-6 space-y-1">
+                                        <div className="text-orange-500 hover:bg-white hover:text-black px-2 py-1.5 rounded-md">
+                                            User Management
+                                        </div>
+                                        <Menu.Root>
+                                            <Menu.Trigger className="text-orange-500 hover:bg-white hover:text-black px-2 py-1.5 rounded-md flex items-center gap-2">
+                                                {/*<MdConfirmationNumber /> */}
+                                                Tickets
+                                            </Menu.Trigger>
+                                            <Menu.Portal>
+                                                <Menu.Positioner side="right" align="start">
+                                                    <Menu.Popup className="bg-white text-black rounded-md shadow-lg p-2 w-48 border border-gray-200">
+                                                        {menuItem('Raise a Ticket')}
+                                                        {menuItem('Manage Tickets')}
+                                                    </Menu.Popup>
+                                                </Menu.Positioner>
+                                            </Menu.Portal>
+                                        </Menu.Root>
+                                        <div className="text-orange-500 hover:bg-white hover:text-black px-2 py-1.5 rounded-md">
+                                            Profile Settings
+                                        </div>
+                                    </div>
+                                )}
                             </div>
-                            <div className="ml-6 space-y-1 text-black text-sm">
-                                <div className="flex items-center gap-2">
-                                    <MdFolder className="text-xs" />
-                                    Assets
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <MdFolder className="text-xs" />
-                                    Contracts
-                                </div>
-                            </div>
-
-                            {/* Market Data */}
-                            <div className="flex items-center gap-2 text-black pl-1">
-                                <MdUpload />
-                                Market Data
-                            </div>
-
-                            {/* Generation Data */}
-                            <div className="flex items-center gap-2 text-black pl-1">
-                                <MdBolt />
-                                Generation Data
-                            </div>
-                        </div>
-                    )}
-                </div>
-
-                {/* SCENARIO MANAGEMENT */}
-                <div>
-                    <div className="flex items-center text-sm font-medium text-orange-500 mb-1">
-                        <MdManageAccounts className="mr-2 text-lg" />
-                        Scenario Management
+                        )}
                     </div>
-                    <div className="ml-6 text-black space-y-1">
-                        <div className="flex items-center gap-2">
-                            <MdTimeline />
-                            Portfolio
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <MdTimeline />
-                            Runs
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <MdTimeline />
-                            Logs
-                        </div>
+                ))}
+
+                <div className="group px-3 py-2 rounded-xl hover:bg-orange-50 transition">
+                    <div className="flex items-center gap-2 text-sm font-semibold text-orange-500 px-4 py-1.5">
+                        <MdBarChart /> Outputs
                     </div>
-                </div>
-
-                {/* OUTPUTS */}
-                <div className="flex items-center gap-2 mt-4 text-orange-500">
-                    <MdBarChart />
-                    Outputs
-                </div>
-
-                {/* SETTINGS */}
-                <div className="flex items-center gap-2 text-orange-500">
-                    <MdSettings />
-                    Settings
                 </div>
             </nav>
 
-            {/* PROFILE SECTION */}
             <div className="p-4 border-t border-gray-200 text-sm flex items-center gap-4">
-                <img
-                    src={user.avatar}
-                    alt="Avatar"
-                    className="h-10 w-10 rounded-full object-cover"
-                />
+                <Avatar.Root className="h-10 w-10 rounded-full overflow-hidden">
+                    <Avatar.Image
+                        src={user.avatar}
+                        alt={user.name}
+                        className="h-full w-full object-cover"
+                    />
+                    <Avatar.Fallback className="flex items-center justify-center h-full w-full bg-gray-200 text-gray-600">
+                        {user.name.charAt(0)}
+                    </Avatar.Fallback>
+                </Avatar.Root>
                 <div>
                     <div className="font-semibold">{user.name}</div>
                     <div className="text-orange-500">{user.role}</div>
                     <div className="mt-1 flex items-center gap-1 text-black hover:text-red-500 cursor-pointer">
-                        <MdLogout size={16} />
-                        Logout
+                        <MdLogout size={16} /> Logout
                     </div>
                 </div>
             </div>
