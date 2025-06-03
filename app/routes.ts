@@ -6,8 +6,9 @@ export default [
         route('dashboard', 'routes/admin/dashboard.tsx', )
     ]),
     layout("routes/admin/auth-layout.tsx", [
-        route('sign-in', 'routes/auth/sign-in.tsx'),
+        // route('sign-in', 'routes/auth/sign-in.tsx'),
         route('sign-up', 'routes/auth/sign-up.tsx'),
+        index('routes/auth/sign-in.tsx'),
     ]),
     // index("routes/home.tsx"),
     // index("routes/admin/dashboard.tsx"),
