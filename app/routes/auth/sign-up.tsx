@@ -9,6 +9,7 @@
 
 
 // src/routes/auth/sign-up.tsx
+'use client'
 import React, { useState } from 'react';
 import { Form } from '@base-ui-components/react';
 import { Fieldset } from '@base-ui-components/react';

@@ -5,7 +5,7 @@ export default [
     layout("routes/admin/layout.tsx", [
         route('dashboard', 'routes/admin/dashboard.tsx', ),
         route('master-data-table', 'routes/inputs/master-data-table.tsx'),
-        route('master-data-table-test', 'routes/inputs/test/master-data-table-test.tsx'),
+        // route('master-data-table-test', 'routes/inputs/test/master-data-table-test.tsx'),
     ]),
     layout("routes/admin/auth-layout.tsx", [
         route('sign-in' , 'routes/auth/sign-in.tsx'),
