@@ -19,7 +19,8 @@ const MasterDataTable = () => {
 
             {/* Step 1 */}
             <div className="space-y-1">
-                <label className="font-medium">What would you like to do?</label>
+                <div className="pb-4"> <label className="font-medium">What would you like to do?</label>
+                </div>
                 <div className="flex space-x-4">
                     <button
                         onClick={() => setAction('add')}
@@ -38,7 +39,7 @@ const MasterDataTable = () => {
 
             {/* Step 2 */}
             <div className="space-y-1">
-                <label className="font-medium">Choose Entry Type - Bulk / Manual</label>
+                <div className="pb-4"><label className="font-medium">Choose Entry Type - Bulk / Manual</label></div>
                 <div className="flex space-x-4">
                     <button
                         onClick={() => setMethod('manual')}
@@ -58,7 +59,7 @@ const MasterDataTable = () => {
             {/* Step 3 */}
             {method === 'manual' && (
                 <div className="space-y-2">
-                    <label className="font-medium">Select Category</label>
+                    <div className="pr-4"><label className="font-medium">Select Category</label></div>
                     <select
                         className="border p-2 rounded-md text-red-600"
                         value={category}
@@ -73,7 +74,7 @@ const MasterDataTable = () => {
 
             {method === 'bulk' && (
                 <div className="space-y-2">
-                    <label className="font-bold">Bulk Method</label>
+                    <label className="font-medium">Bulk Method</label>
                     <div className="bg-gray-100 p-4 rounded-md flex items-center space-x-4">
                         <input
                             type="text"
